@@ -19,6 +19,10 @@ Route::get('/api', 'ApiController@index');
 Route::get('/api/search/people', 'ApiController@search_people');
 Route::get('/api/cast_crew', 'ApiController@cast_and_crew');
 
+// moning workout
+Route::get('/api/movies/top_rated', 'MovieController@top_movies');
+Route::get('/api/movies/movie_of_the_week', 'MovieController@movie_of_the_week');
+
 Route::get('/api/movies', 'MovieController@movies');
 
 Route::get('/test/form', 'ApiController@form');

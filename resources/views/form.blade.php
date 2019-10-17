@@ -19,6 +19,8 @@
  
     </form>
 
+    <br>
+
     <form action="{{ action('ApiController@search_people') }}" method="get">
 
         <input type="text" name="search" value="">
