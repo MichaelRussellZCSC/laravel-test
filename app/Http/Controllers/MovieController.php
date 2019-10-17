@@ -8,7 +8,88 @@ use Facades\App\Services\MovieService;
 
 class MovieController extends Controller
 {
-    //
+    public function index(Request $request)
+    {
+        // get parameters from request
+        $orderby   = $request->input('orderby');
+        if (!in_array($orderby, ['name', 'rating', 'year'])) {
+            $orderby = 'name';
+        }
+        $orderway  = $request->input('orderway', 'asc');
+        $limit     = $request->input('limit', 10);
+        $page      = max(1, $request->input('page', 1));
+        $search    = $request->input('search', null);
+        $year      = $request->input('year', null);
+        $minrating = $request->input('minrating', null);
+
+        // initialize the query builder
+        $query = DB::table('movies');
+
+        // modify the query builder
+        $query
+            ->orderBy($orderby, $orderway)
+            ->limit($limit)
+            ->offset($page * $limit - $limit);
+
+        if ($search !== null) {
+            $query->where('name', 'like', "%{$search}%");
+        }
+
+        if ($year !== null) {
+            $query->where('year', $year);
+        }
+
+        if ($minrating !== null) {
+            $query->where('rating', '>=', $minrating);
+        }
+
+        // execute the query built by the query builder and get the results
+        $movies = $query->get();
+
+        return $movies;
+    }
+
+    public function show(Request $request)
+    {
+        $id = $request->input('id');
+
+        $movie = \App\Movie::find($id);
+
+        // $values = $movie->ratings->pluck('value')->toArray();
+        // $average = array_sum($values) / count($values);
+
+        $movie->ratings;
+
+        $people = $movie->people;
+
+        return [
+            'movie' => $movie,
+            'ratings' => $movie->ratings,
+            'people' => $movie->people
+        ];
+    }
+
+    public function cast_and_crew(Request $request)
+    {
+        $id = $request->input('id');
+
+        if ($id === null) {
+            return [];
+        }
+
+        // get person ids
+        $person_ids = DB::table('movie_person')
+            ->where('movie_id', $id)
+            ->pluck('person_id');
+
+        // use person ids to select people
+        $people = DB::table('people')
+            ->whereIn('id', $person_ids)
+            ->get();
+
+        return $people;
+    }
+    
     public function movies()
     {
         // all movies with rating above 8 , first 10 only and ordered alphabetically by name
