@@ -23,10 +23,15 @@ Route::get('/api/cast_crew', 'ApiController@cast_and_crew');
 Route::get('/api/movies/top_rated', 'MovieController@top_movies');
 Route::get('/api/movies/movie_of_the_week', 'MovieController@movie_of_the_week');
 
+// morning workout 2
+Route::post('/api/collection', 'Api\CollectionController@store');
+Route::get('/api/list/user', 'Api\CollectionController@user_lists');
+
 Route::get('/api/movies', 'MovieController@movies');
 Route::get('/api/movies/list', 'MovieController@index');
 Route::get('/api/movies/cast_and_crew', 'MovieController@cast_and_crew');
 Route::get('/api/movies/show', 'MovieController@show');
+Route::get('/api/movie', 'Api\MovieController@show');
 
 // reviews
 Route::get('/api/review', 'Api\ReviewController@index');
