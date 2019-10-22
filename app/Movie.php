@@ -15,4 +15,9 @@ class Movie extends Model
     {
         return $this->belongsToMany('App\Person');
     }
+
+    public function favored_by_users()
+    {
+        return $this->belongsToMany('App\User', 'favorite_movies');
+    }
 }

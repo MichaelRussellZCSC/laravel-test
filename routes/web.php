@@ -27,6 +27,10 @@ Route::get('/api/movies/movie_of_the_week', 'MovieController@movie_of_the_week')
 Route::post('/api/collection', 'Api\CollectionController@store');
 Route::get('/api/list/user', 'Api\CollectionController@user_lists');
 
+// morning workout 3
+Route::post('/api/movies/favorite/toggle', 'Api\FavoriteMovieController@toggle');
+Route::get('/api/movies/favorite', 'Api\FavoriteMovieController@status');
+
 Route::get('/api/movies', 'MovieController@movies');
 Route::get('/api/movies/list', 'MovieController@index');
 Route::get('/api/movies/cast_and_crew', 'MovieController@cast_and_crew');

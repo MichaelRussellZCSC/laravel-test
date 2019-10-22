@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Collection');
     }
+
+    public function favorite_movies()
+    {
+        return $this->belongsToMany('App\Movie', 'favorite_movies');
+    }
 }
