@@ -44,7 +44,15 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $person = new Person;
+        $person->name = $request->input('name');
+        $person->photo_url = $request->input('photo_url');
+        $person->biography = $request->input('biography');
+        $person->profession_id = $request->input('profession_id');
+
+        $person->save();
+
+        return redirect('/person/'.$person->id.'/edit');
     }
 
     /**
@@ -86,7 +94,16 @@ class PersonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $person = Person::find($id);
+        
+        $person->name = $request->input('name');
+        $person->photo_url = $request->input('photo_url');
+        $person->biography = $request->input('biography');
+        $person->profession_id = $request->input('profession_id');
+
+        $person->save();
+
+        return redirect('/person/'.$person->id.'/edit');
     }
 
     /**
