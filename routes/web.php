@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'IndexController@index');
 
 Route::get('/api', 'ApiController@index');
 Route::get('/api/search/people', 'ApiController@search_people');
@@ -51,6 +49,9 @@ Route::delete('/api/rating', 'Api\RatingController@destroy');
 // form tests
 Route::get('/test/form', 'ApiController@form');
 Route::post('/test/form', 'ApiController@handleForm');
+
+// people
+Route::resource('/person', 'PersonController');
 
 // Route::resource('/api/review', 'ReviewController');
 // Route::resource('/api/rating', 'RatingController');
