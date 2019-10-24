@@ -62,5 +62,7 @@ Route::get('/workout-chess', function() {
 // Route::resource('/api/rating', 'RatingController');
 
 
-Route::get('/movies', 'NewMovieController@index');
-Route::get('/movies/{id}', 'NewMovieController@show');
+Route::get('/movies', 'NewMovieController@index')->name('movie_index');
+Route::get('/movies/{movie}', 'NewMovieController@show')->name('movie_show');
+
+Route::get('/movies/{movie}/reviews', 'ReviewController@index');
