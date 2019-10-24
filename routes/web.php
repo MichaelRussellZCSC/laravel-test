@@ -53,10 +53,14 @@ Route::post('/test/form', 'ApiController@handleForm');
 Route::resource('/person', 'PersonController');
 
 
-
+// chess morning workout
 Route::get('/workout-chess', function() {
     return view('chess');
 });
 
 // Route::resource('/api/review', 'ReviewController');
 // Route::resource('/api/rating', 'RatingController');
+
+
+Route::get('/movies', 'NewMovieController@index');
+Route::get('/movies/{id}', 'NewMovieController@show');
