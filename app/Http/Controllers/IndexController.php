@@ -10,7 +10,7 @@ class IndexController extends Controller
     {
         $title_of_page = 'Movie website';
 
-        $view = view('index', 
+        $view = view('index',
             [
                 'title' => $title_of_page,
                 'headline' => 'Welcome, '
@@ -20,7 +20,7 @@ class IndexController extends Controller
         $view->with('date', date('j. n. Y'));
 
         $view->with([
-            'username' => 'Honza',
+            'username' => 'Slavo',
             'admin' => false
         ]);
 
