@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Movie extends Model
 {
-    public function ratings()
+    public function reviews()
     {
-        return $this->hasMany('App\Rating');
+        return $this->hasMany('App\Review', 'movie_id', 'id');
     }
 
     public function people()

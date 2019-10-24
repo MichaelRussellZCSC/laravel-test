@@ -8,12 +8,9 @@
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
-|
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'IndexController@index');
 
 Route::get('/api', 'ApiController@index');
 Route::get('/api/search/people', 'ApiController@search_people');
@@ -52,5 +49,20 @@ Route::delete('/api/rating', 'Api\RatingController@destroy');
 Route::get('/test/form', 'ApiController@form');
 Route::post('/test/form', 'ApiController@handleForm');
 
+// people
+Route::resource('/person', 'PersonController');
+
+
+// chess morning workout
+Route::get('/workout-chess', function() {
+    return view('chess');
+});
+
 // Route::resource('/api/review', 'ReviewController');
 // Route::resource('/api/rating', 'RatingController');
+
+
+Route::get('/movies', 'NewMovieController@index')->name('movie_index');
+Route::get('/movies/{movie}', 'NewMovieController@show')->name('movie_show');
+
+Route::get('/movies/{movie}/reviews', 'ReviewController@index');

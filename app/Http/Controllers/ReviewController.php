@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Movie;
+use App\Review;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -11,9 +13,14 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($movie)
     {
-        //
+//        $reviews = Review::where('movie_id', $movie)->get();
+
+        $movie = Movie::findOrFail($movie);
+        $reviews = $movie->reviews()->get();
+
+        return view('reviews.index', compact('reviews','movie'));
     }
 
     /**
