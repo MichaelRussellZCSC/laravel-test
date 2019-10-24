@@ -21,4 +21,8 @@
     <p>
         <a href="{{ route('movie_index') }}">Back to list of movies</a>
     </p>
+
+    <p>
+        <a href="{{ action('ReviewController@index', $movie->id) }}">Reviews</a>
+    </p>
 @endsection

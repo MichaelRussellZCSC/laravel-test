@@ -17,9 +17,10 @@ class ReviewController extends Controller
     {
 //        $reviews = Review::where('movie_id', $movie)->get();
 
-        $reviews = Movie::findOrFail($movie)->reviews()->get();
+        $movie = Movie::findOrFail($movie);
+        $reviews = $movie->reviews()->get();
 
-        return $reviews;
+        return view('reviews.index', compact('reviews','movie'));
     }
 
     /**
